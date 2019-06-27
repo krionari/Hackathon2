@@ -32,6 +32,12 @@ class Reponse
      */
     private $correspondance;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Question", inversedBy="Reponse")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $question;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +75,18 @@ class Reponse
     public function setCorrespondance(string $correspondance): self
     {
         $this->correspondance = $correspondance;
+
+        return $this;
+    }
+
+    public function getQuestion(): ?Question
+    {
+        return $this->question;
+    }
+
+    public function setQuestion(?Question $question): self
+    {
+        $this->question = $question;
 
         return $this;
     }
