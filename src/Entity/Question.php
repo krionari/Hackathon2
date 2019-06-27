@@ -21,20 +21,6 @@ class Question
      */
     private $directive;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $solution;
-
-    public function getSolution(): ?string
-    {
-        return $this->solution;
-    }
-    public function setSolution(string $solution): self
-    {
-        $this->solution = $solution;
-        return $this;
-    }
 
     public function getId(): ?int
     {
