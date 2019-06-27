@@ -32,5 +32,4 @@ class QuestionController extends AbstractController
     {
         return $this->render('question/solution.html.twig');
     }
-
 }
