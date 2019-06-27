@@ -10,7 +10,6 @@ namespace App\Controller;
 
 
 use App\Entity\Question;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,22 +20,26 @@ class QuestionController extends AbstractController
      * @Route("/question/{id}", name="question_index")
      * @return Response A response instance
      */
-        public function index(EntityManagerInterface $em): Response
+        public function index(Question $question): Response
         {
 
-            $question = new Question();
-            $this->getDoctrine()->getManager();
+            $questions = $question->getDirective();
 
-
-            return $this->render('question/index.html.twig');
+            return $this->render('question/index.html.twig', ['questions' => $questions]);
         }
 
     /**
-     * @Route("/solution/{id}", name="question_index")
+     * @Route("/solution/{id}", name="solution_index")
      * @return Response A response instance
      */
-    public function solution(): Response
+    public function solution(Question $question): Response
     {
-        return $this->render('question/solution.html.twig');
+        $reponses = $question->getReponse();
+        $solution = $question->getSolution();
+
+        return $this->render('question/solution.html.twig', [
+            'reponses' => $reponses,
+            'solution' => $solution
+        ]);
     }
 }
