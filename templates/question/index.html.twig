@@ -2,10 +2,9 @@
 
 {% block body %}
 
-{% for question in questions %}
-
-    {{ question.directive }}
-
-{% endfor %}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Repondre') }}</button>
+    {{ form_end(form) }}
 
 {% endblock %}

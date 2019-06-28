@@ -10,8 +10,10 @@ namespace App\Controller;
 
 
 use App\Entity\Question;
+use App\Entity\Reponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class QuestionController extends AbstractController
@@ -20,13 +22,13 @@ class QuestionController extends AbstractController
      * @Route("/question/{id}", name="question_index")
      * @return Response A response instance
      */
-        public function index(Question $question): Response
-        {
+    public function index(Question $question, Reponse $reponse, Request $request): Response
+    {
 
-            $questions = $question->getDirective();
-
-            return $this->render('question/index.html.twig', ['questions' => $questions]);
-        }
+        return $this->render('question/index.html.twig', [
+            'question' => $question,
+        ]);
+    }
 
     /**
      * @Route("/solution/{id}", name="solution_index")
